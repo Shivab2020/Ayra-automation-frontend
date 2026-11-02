@@ -124,7 +124,7 @@ function SceneContents({ reducedMotion, onReady }: { reducedMotion: boolean; onR
     if (renderedFrames.current === 2) onReady();
     if (renderedFrames.current < 2) invalidate();
   });
-  const scale = size.width < 500 ? 0.72 : size.width < 700 ? 0.84 : 1;
+  const scale = size.width < 500 ? 1.12 : size.width < 700 ? 1.04 : 1;
 
   return (
     <>
