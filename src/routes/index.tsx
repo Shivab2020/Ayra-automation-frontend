@@ -1,5 +1,5 @@
 import { ClientOnly, createFileRoute } from "@tanstack/react-router";
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import WorkflowStory from "@/components/WorkflowStory";
 import WatermelonFeature5 from "@/components/watermelon-ui/feature-5";
 import BentoAudiences from "@/components/watermelon-ui/bento-audiences";
@@ -71,6 +71,7 @@ const questions = [
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [sceneReady, setSceneReady] = useState(false);
+  const [sceneRequested, setSceneRequested] = useState(false);
   const schema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -83,6 +84,20 @@ function Index() {
   };
 
   const closeMenu = () => setMenuOpen(false);
+
+  useEffect(() => {
+    let timer = 0;
+    let idleId: number | undefined;
+    if ("requestIdleCallback" in window) {
+      idleId = window.requestIdleCallback(() => setSceneRequested(true), { timeout: 1800 });
+    } else {
+      timer = window.setTimeout(() => setSceneRequested(true), 500);
+    }
+    return () => {
+      window.clearTimeout(timer);
+      if (idleId !== undefined) window.cancelIdleCallback(idleId);
+    };
+  }, []);
 
   return (
     <div className="site-shell">
@@ -184,7 +199,7 @@ function Index() {
             </div>}
             <ClientOnly fallback={<div className="scene-load-state" aria-hidden="true" />}>
               <Suspense fallback={<div className="scene-load-state" aria-hidden="true" />}>
-                <HeroScene onReady={() => setSceneReady(true)} />
+                {sceneRequested && <HeroScene onReady={() => setSceneReady(true)} />}
               </Suspense>
             </ClientOnly>
           </aside>

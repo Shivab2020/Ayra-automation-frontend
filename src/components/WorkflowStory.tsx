@@ -42,7 +42,7 @@ export default function WorkflowStory() {
         void import("./workflow-motion/WorkflowAnimationPlayer");
         preload.disconnect();
       }
-    }, { rootMargin: "700px", threshold: 0 });
+    }, { rootMargin: "120px", threshold: 0 });
     updateMotionPreference();
     updateTabVisibility();
     media.addEventListener("change", updateMotionPreference);
