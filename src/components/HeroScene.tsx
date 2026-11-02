@@ -84,24 +84,17 @@ function Orbit({ reducedMotion }: { reducedMotion: boolean }) {
                 metalness={0.1}
               />
             </mesh>
-            {index !== 0 && (
-              <Html
-                center
-                distanceFactor={9}
-                position={[0, 0.55, 0]}
-                style={{ pointerEvents: "none" }}
-              >
-                <span className="hero-tag">{stage}</span>
-              </Html>
-            )}
+            <Html
+              center
+              distanceFactor={9}
+              position={[0, 0.55, 0]}
+              style={{ pointerEvents: "none" }}
+            >
+              <span className="hero-tag">{stage}</span>
+            </Html>
           </group>
         );
       })}
-      <group position={curve.getPointAt(0)}>
-        <Html center distanceFactor={9} position={[-0.65, 0.55, 0]} style={{ pointerEvents: "none" }}>
-          <span className="hero-tag">Find</span>
-        </Html>
-      </group>
     </group>
   );
 }
