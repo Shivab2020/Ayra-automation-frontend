@@ -87,7 +87,8 @@ function Orbit({ reducedMotion }: { reducedMotion: boolean }) {
             <Html
               center
               distanceFactor={9}
-              position={[0, 0.55, 0]}
+              position={[index === 0 ? -1.05 : 0, 0.55, 0]}
+              zIndexRange={[100, 0]}
               style={{ pointerEvents: "none" }}
             >
               <span className="hero-tag">{stage}</span>
