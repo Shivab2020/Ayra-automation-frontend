@@ -54,7 +54,7 @@ export default function WorkflowAnimationPlayer({ playing, selectedStage, select
       fps={workflowFps}
       loop
       controls={false}
-      autoPlay={false}
+      autoPlay={playing}
       className="workflow-player"
       style={{ width: "100%", height: "100%" }}
       aria-label="Animated example of Ayra Assistant moving a page-title fix through review and a site check"

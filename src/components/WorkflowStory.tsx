@@ -25,23 +25,37 @@ export default function WorkflowStory() {
   const [selectionId, setSelectionId] = useState(0);
   const [reduced, setReduced] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   const [tabVisible, setTabVisible] = useState(true);
   const root = useRef<HTMLDivElement>(null);
+  const preview = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const media = matchMedia("(prefers-reduced-motion: reduce)");
     const updateMotionPreference = () => setReduced(media.matches);
     const updateTabVisibility = () => setTabVisible(!document.hidden);
-    const observer = new IntersectionObserver(([entry]) => setVisible(Boolean(entry?.isIntersecting)), { threshold: 0.16, rootMargin: "80px" });
+    // Watch the animation itself: the full stacked section can exceed a phone viewport.
+    const observer = new IntersectionObserver(([entry]) => setVisible(Boolean(entry?.isIntersecting)), { threshold: 0.01 });
+    const preload = new IntersectionObserver(([entry]) => {
+      if (entry?.isIntersecting) {
+        setLoaded(true);
+        void import("./workflow-motion/WorkflowAnimationPlayer");
+        preload.disconnect();
+      }
+    }, { rootMargin: "700px", threshold: 0 });
     updateMotionPreference();
     updateTabVisibility();
     media.addEventListener("change", updateMotionPreference);
     document.addEventListener("visibilitychange", updateTabVisibility);
-    if (root.current) observer.observe(root.current);
+    if (preview.current) {
+      observer.observe(preview.current);
+      preload.observe(preview.current);
+    }
     return () => {
       media.removeEventListener("change", updateMotionPreference);
       document.removeEventListener("visibilitychange", updateTabVisibility);
       observer.disconnect();
+      preload.disconnect();
     };
   }, []);
 
@@ -62,9 +76,9 @@ export default function WorkflowStory() {
         ))}</ul>
         {reduced && <p className="workflow-reduced-note">Motion Is Paused. Select Any Step To Read It.</p>}
       </div>
-      <figure className="workflow-preview workflow-preview-interactive">
+      <figure ref={preview} className="workflow-preview workflow-preview-interactive">
         <div className="workflow-motion-stage" aria-label={`Ayra Assistant example: ${current.title}`}>
-          {visible ? (
+          {loaded || visible ? (
             <Suspense fallback={<WorkflowPoster stage={active} />}>
               <WorkflowAnimationPlayer playing={playing} selectedStage={selectedStage} selectionId={selectionId} onStageChange={onStageChange} />
             </Suspense>
