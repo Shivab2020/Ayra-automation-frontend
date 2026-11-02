@@ -2404,3 +2404,24 @@ h1,h2,h3,h4,h5,h6 {text-transform:capitalize;}
 
 /* Quiet workflow: a steady selection and a restrained workspace transition. */
 .workflow-action.is-current::after{display:none;animation:none}.workflow-actions .workflow-action.is-current{background:#f5f1eb}.workflow-action.is-current .workflow-step-symbol{box-shadow:none;background:#b6532e}.workflow-preview-interactive{background:#faf9f7;box-shadow:none;border-radius:10px}.workflow-reel{background:#faf9f7}.wf-brand-symbol{background:#b6532e;border-radius:6px}.wf-audit-panel,.wf-proposal-card,.wf-comparison,.wf-live-preview,.wf-delivery-route{box-shadow:none;border-radius:5px;background:#fff}.wf-scan-light{box-shadow:none;background:#c8805f;opacity:.55}.wf-insight,.wf-human-note,.wf-delivery-detail{background:#f0eeea;border-radius:5px}.wf-stage-label i,.wf-human-dot,.wf-route-node.is-sent .wf-route-icon{box-shadow:none}.wf-input-preview{background:#f5f3ef}.wf-reel-track span{background:#b6532e}.closing-bloom{display:none}
+
+/* Compact layouts keep content readable and avoid fixed desktop canvas widths. */
+@media (max-width: 767px) {
+  .site-shell { overflow-x: clip; }
+  .hero-section { min-height: auto; padding-top: 38px; padding-bottom: 36px; gap: 20px; }
+  .hero-copy h1 { font-size: clamp(34px, 9vw, 52px); line-height: 1.12; overflow-wrap: normal; }
+  .hero-intro { font-size: 15px; line-height: 1.75; }
+  .hero-scene-wrap { min-height: 260px; height: 290px; max-width: 100%; }
+  .workflow-story, .workflow-preview, .workflow-actions, .workflow-player, .feature-chapter, .closing-copy { min-width: 0; max-width: 100%; }
+  .workflow-preview { width: 100%; aspect-ratio: 600 / 520; height: auto; min-height: 0; }
+  .workflow-story { gap: 22px; }
+  .section-heading h2 { font-size: clamp(28px, 7.5vw, 38px); line-height: 1.18; }
+  .feature-directory-list dd { font-size: 15px; }
+  .closing-copy h2 { font-size: clamp(30px, 8vw, 40px); }
+  .footer-inner { gap: 28px; }
+  a, button { touch-action: manipulation; }
+}
+@media (max-width: 390px) {
+  .hero-scene-wrap { height: 255px; min-height: 240px; }
+  .wordmark { font-size: 20px; }
+}

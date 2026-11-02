@@ -155,21 +155,28 @@ function SceneContents({ reducedMotion, onReady }: { reducedMotion: boolean; onR
 
 export default function HeroScene({ onReady }: { onReady: () => void }) {
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [mobile, setMobile] = useState(() => typeof window !== "undefined" && window.innerWidth < 768);
 
   useEffect(() => {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     const updatePreference = () => setReducedMotion(preference.matches);
+    const updateSize = () => setMobile(window.innerWidth < 768);
+    window.addEventListener("resize", updateSize);
     updatePreference();
     preference.addEventListener("change", updatePreference);
-    return () => preference.removeEventListener("change", updatePreference);
+    return () => {
+      preference.removeEventListener("change", updatePreference);
+      window.removeEventListener("resize", updateSize);
+    };
   }, []);
 
   return (
     <Canvas
       className="hero-scene-canvas"
       frameloop={reducedMotion ? "demand" : "always"}
-      shadows
-      dpr={[1, 1.75]}
+      shadows={!mobile}
+      dpr={mobile ? 1 : [1, 1.5]}
+      gl={{ antialias: !mobile, powerPreference: "low-power" }}
       camera={{ position: [0, 1.6, 10.5], fov: 42 }}
       onCreated={({ camera }) => {
         camera.lookAt(0, 0, 0);
