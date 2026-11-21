@@ -89,7 +89,7 @@ export const contentPages = [
   {
     "slug": "about",
     "title": "About Ayra Automation",
-    "description": "Learn what Ayra Automation does, how its SEO workspace works and how its public content is maintained.",
+    "description": "Meet Shivanand Billur, founder of Ayra Automation, and learn why the product connects SEO findings to reviewed, verifiable work.",
     "sections": [
       {
         "title": "Why Ayra exists",
@@ -241,41 +241,6 @@ export const contentPages = [
     ],
     "article": false,
     "sources": []
-  },
-  {
-    "slug": "guides/seo-automation-checklist",
-    "title": "SEO automation checklist: what to review before delivery",
-    "description": "Check evidence, site permissions, content revisions and live-page results before closing an SEO task.",
-    "sections": [
-      {
-        "title": "What belongs in the checklist?",
-        "text": [
-          "Before delivery, confirm the source finding, affected URL, intended outcome, permission, reviewed revision and verification method. This makes repeated work easier to inspect and investigate."
-        ]
-      },
-      {
-        "title": "Before starting",
-        "text": [
-          "Confirm the site and environment. Record the evidence date and check whether the issue still exists. Look for overlapping changes or a different canonical URL. Define success as an observable page change before discussing possible search benefits."
-        ]
-      },
-      {
-        "title": "Before approval",
-        "text": [
-          "Inspect the exact replacement. Check claims, tone and useful links. Assign an owner and confirm that the delivery path supports this field. If it does not, prepare a manual handoff with the same evidence and approved revision."
-        ]
-      },
-      {
-        "title": "After delivery",
-        "text": [
-          "Fetch the live page and inspect the output. Preserve partial results and errors rather than marking the task complete automatically. For a title change, inspect both the title and the canonical page. Then schedule search follow-up where a reliable baseline exists."
-        ]
-      }
-    ],
-    "article": true,
-    "sources": [
-      "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
-    ]
   },
   {
     "slug": "guides/aeo-geo-readiness",

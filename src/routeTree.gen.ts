@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as EditorialPolicyRouteImport } from './routes/editorial-policy'
 import { Route as HelpRouteImport } from './routes/help'
 import { Route as KeywordCompetitorResearchRouteImport } from './routes/keyword-competitor-research'
@@ -18,8 +19,10 @@ import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as SeoAuditWorkflowRouteImport } from './routes/seo-audit-workflow'
 import { Route as SeoAutomationRouteImport } from './routes/seo-automation'
 import { Route as GuidesAeoGeoReadinessRouteImport } from './routes/guides.aeo-geo-readiness'
+import { Route as GuidesInternalLinkingAuditRouteImport } from './routes/guides.internal-linking-audit'
 import { Route as GuidesKeywordToContentMapRouteImport } from './routes/guides.keyword-to-content-map'
 import { Route as GuidesSeoAutomationChecklistRouteImport } from './routes/guides.seo-automation-checklist'
+import { Route as GuidesSeoChangeLogRouteImport } from './routes/guides.seo-change-log'
 import { Route as HelpContentReviewRouteImport } from './routes/help_.content-review'
 import { Route as HelpGettingStartedRouteImport } from './routes/help_.getting-started'
 
@@ -31,6 +34,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EditorialPolicyRoute = EditorialPolicyRouteImport.update({
@@ -69,6 +77,12 @@ const GuidesAeoGeoReadinessRoute = GuidesAeoGeoReadinessRouteImport.update({
   path: '/guides/aeo-geo-readiness',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GuidesInternalLinkingAuditRoute =
+  GuidesInternalLinkingAuditRouteImport.update({
+    id: '/guides/internal-linking-audit',
+    path: '/guides/internal-linking-audit',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const GuidesKeywordToContentMapRoute =
   GuidesKeywordToContentMapRouteImport.update({
     id: '/guides/keyword-to-content-map',
@@ -81,6 +95,11 @@ const GuidesSeoAutomationChecklistRoute =
     path: '/guides/seo-automation-checklist',
     getParentRoute: () => rootRouteImport,
   } as any)
+const GuidesSeoChangeLogRoute = GuidesSeoChangeLogRouteImport.update({
+  id: '/guides/seo-change-log',
+  path: '/guides/seo-change-log',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HelpContentReviewRoute = HelpContentReviewRouteImport.update({
   id: '/help_/content-review',
   path: '/help/content-review',
@@ -95,6 +114,7 @@ const HelpGettingStartedRoute = HelpGettingStartedRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/editorial-policy': typeof EditorialPolicyRoute
   '/help': typeof HelpRoute
   '/keyword-competitor-research': typeof KeywordCompetitorResearchRoute
@@ -102,14 +122,17 @@ export interface FileRoutesByFullPath {
   '/seo-audit-workflow': typeof SeoAuditWorkflowRoute
   '/seo-automation': typeof SeoAutomationRoute
   '/guides/aeo-geo-readiness': typeof GuidesAeoGeoReadinessRoute
+  '/guides/internal-linking-audit': typeof GuidesInternalLinkingAuditRoute
   '/guides/keyword-to-content-map': typeof GuidesKeywordToContentMapRoute
   '/guides/seo-automation-checklist': typeof GuidesSeoAutomationChecklistRoute
+  '/guides/seo-change-log': typeof GuidesSeoChangeLogRoute
   '/help/content-review': typeof HelpContentReviewRoute
   '/help/getting-started': typeof HelpGettingStartedRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/editorial-policy': typeof EditorialPolicyRoute
   '/help': typeof HelpRoute
   '/keyword-competitor-research': typeof KeywordCompetitorResearchRoute
@@ -117,8 +140,10 @@ export interface FileRoutesByTo {
   '/seo-audit-workflow': typeof SeoAuditWorkflowRoute
   '/seo-automation': typeof SeoAutomationRoute
   '/guides/aeo-geo-readiness': typeof GuidesAeoGeoReadinessRoute
+  '/guides/internal-linking-audit': typeof GuidesInternalLinkingAuditRoute
   '/guides/keyword-to-content-map': typeof GuidesKeywordToContentMapRoute
   '/guides/seo-automation-checklist': typeof GuidesSeoAutomationChecklistRoute
+  '/guides/seo-change-log': typeof GuidesSeoChangeLogRoute
   '/help/content-review': typeof HelpContentReviewRoute
   '/help/getting-started': typeof HelpGettingStartedRoute
 }
@@ -126,6 +151,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/editorial-policy': typeof EditorialPolicyRoute
   '/help': typeof HelpRoute
   '/keyword-competitor-research': typeof KeywordCompetitorResearchRoute
@@ -133,8 +159,10 @@ export interface FileRoutesById {
   '/seo-audit-workflow': typeof SeoAuditWorkflowRoute
   '/seo-automation': typeof SeoAutomationRoute
   '/guides/aeo-geo-readiness': typeof GuidesAeoGeoReadinessRoute
+  '/guides/internal-linking-audit': typeof GuidesInternalLinkingAuditRoute
   '/guides/keyword-to-content-map': typeof GuidesKeywordToContentMapRoute
   '/guides/seo-automation-checklist': typeof GuidesSeoAutomationChecklistRoute
+  '/guides/seo-change-log': typeof GuidesSeoChangeLogRoute
   '/help_/content-review': typeof HelpContentReviewRoute
   '/help_/getting-started': typeof HelpGettingStartedRoute
 }
@@ -143,6 +171,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/contact'
     | '/editorial-policy'
     | '/help'
     | '/keyword-competitor-research'
@@ -150,14 +179,17 @@ export interface FileRouteTypes {
     | '/seo-audit-workflow'
     | '/seo-automation'
     | '/guides/aeo-geo-readiness'
+    | '/guides/internal-linking-audit'
     | '/guides/keyword-to-content-map'
     | '/guides/seo-automation-checklist'
+    | '/guides/seo-change-log'
     | '/help/content-review'
     | '/help/getting-started'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/contact'
     | '/editorial-policy'
     | '/help'
     | '/keyword-competitor-research'
@@ -165,14 +197,17 @@ export interface FileRouteTypes {
     | '/seo-audit-workflow'
     | '/seo-automation'
     | '/guides/aeo-geo-readiness'
+    | '/guides/internal-linking-audit'
     | '/guides/keyword-to-content-map'
     | '/guides/seo-automation-checklist'
+    | '/guides/seo-change-log'
     | '/help/content-review'
     | '/help/getting-started'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/contact'
     | '/editorial-policy'
     | '/help'
     | '/keyword-competitor-research'
@@ -180,8 +215,10 @@ export interface FileRouteTypes {
     | '/seo-audit-workflow'
     | '/seo-automation'
     | '/guides/aeo-geo-readiness'
+    | '/guides/internal-linking-audit'
     | '/guides/keyword-to-content-map'
     | '/guides/seo-automation-checklist'
+    | '/guides/seo-change-log'
     | '/help_/content-review'
     | '/help_/getting-started'
   fileRoutesById: FileRoutesById
@@ -189,6 +226,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
   EditorialPolicyRoute: typeof EditorialPolicyRoute
   HelpRoute: typeof HelpRoute
   KeywordCompetitorResearchRoute: typeof KeywordCompetitorResearchRoute
@@ -196,8 +234,10 @@ export interface RootRouteChildren {
   SeoAuditWorkflowRoute: typeof SeoAuditWorkflowRoute
   SeoAutomationRoute: typeof SeoAutomationRoute
   GuidesAeoGeoReadinessRoute: typeof GuidesAeoGeoReadinessRoute
+  GuidesInternalLinkingAuditRoute: typeof GuidesInternalLinkingAuditRoute
   GuidesKeywordToContentMapRoute: typeof GuidesKeywordToContentMapRoute
   GuidesSeoAutomationChecklistRoute: typeof GuidesSeoAutomationChecklistRoute
+  GuidesSeoChangeLogRoute: typeof GuidesSeoChangeLogRoute
   HelpContentReviewRoute: typeof HelpContentReviewRoute
   HelpGettingStartedRoute: typeof HelpGettingStartedRoute
 }
@@ -216,6 +256,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/editorial-policy': {
@@ -267,6 +314,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GuidesAeoGeoReadinessRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/guides/internal-linking-audit': {
+      id: '/guides/internal-linking-audit'
+      path: '/guides/internal-linking-audit'
+      fullPath: '/guides/internal-linking-audit'
+      preLoaderRoute: typeof GuidesInternalLinkingAuditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/guides/keyword-to-content-map': {
       id: '/guides/keyword-to-content-map'
       path: '/guides/keyword-to-content-map'
@@ -279,6 +333,13 @@ declare module '@tanstack/react-router' {
       path: '/guides/seo-automation-checklist'
       fullPath: '/guides/seo-automation-checklist'
       preLoaderRoute: typeof GuidesSeoAutomationChecklistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides/seo-change-log': {
+      id: '/guides/seo-change-log'
+      path: '/guides/seo-change-log'
+      fullPath: '/guides/seo-change-log'
+      preLoaderRoute: typeof GuidesSeoChangeLogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/help_/content-review': {
@@ -301,6 +362,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
   EditorialPolicyRoute: EditorialPolicyRoute,
   HelpRoute: HelpRoute,
   KeywordCompetitorResearchRoute: KeywordCompetitorResearchRoute,
@@ -308,8 +370,10 @@ const rootRouteChildren: RootRouteChildren = {
   SeoAuditWorkflowRoute: SeoAuditWorkflowRoute,
   SeoAutomationRoute: SeoAutomationRoute,
   GuidesAeoGeoReadinessRoute: GuidesAeoGeoReadinessRoute,
+  GuidesInternalLinkingAuditRoute: GuidesInternalLinkingAuditRoute,
   GuidesKeywordToContentMapRoute: GuidesKeywordToContentMapRoute,
   GuidesSeoAutomationChecklistRoute: GuidesSeoAutomationChecklistRoute,
+  GuidesSeoChangeLogRoute: GuidesSeoChangeLogRoute,
   HelpContentReviewRoute: HelpContentReviewRoute,
   HelpGettingStartedRoute: HelpGettingStartedRoute,
 }

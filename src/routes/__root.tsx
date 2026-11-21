@@ -87,6 +87,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content: "Find a site issue, approve the fix, and let Ayra carry it through connected tools.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://ayraautomation.in/images/ayra-social.jpg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "Ayra Automation. From SEO issue to verified fix." },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [

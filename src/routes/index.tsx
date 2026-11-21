@@ -6,7 +6,7 @@ import BentoAudiences from "@/components/watermelon-ui/bento-audiences";
 import BlogCards from "@/components/watermelon-ui/blog-cards";
 import FaqCards from "@/components/watermelon-ui/faq-cards";
 import CtaCard from "@/components/watermelon-ui/cta-card";
-import { indexing } from '@/components/ContentPage';
+import { indexing, organizationId } from '@/components/ContentPage';
 import {
   ArrowDownRight,
   ArrowUpRight,
@@ -38,7 +38,10 @@ export const Route = createFileRoute("/")({
           "Move from an SEO problem to an approved change, supported execution and a checked result with Ayra Assistant.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://ayraautomation.in/" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Ayra Automation | AI help from SEO issue to fix" },
+      { name: "twitter:description", content: "Move from an SEO problem to an approved change, supported execution and a checked result with Ayra Assistant." },
     ],
     links: [{ rel: "canonical", href: "https://ayraautomation.in/" }],
   }),
@@ -79,6 +82,7 @@ function Index() {
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     url: "https://ayraautomation.in/",
+    publisher: { "@type": "Organization", "@id": organizationId, name: "Ayra Automation", url: "https://ayraautomation.in/" },
     description:
       "Ayra Assistant finds SEO issues, prepares fixes, carries out approved changes through connected tools, and checks the result.",
   };
@@ -128,6 +132,8 @@ function Index() {
             <a href="#questions" onClick={closeMenu}>
               Questions
             </a>
+            <a href="/about" onClick={closeMenu}>About</a>
+            <a href="/contact" onClick={closeMenu}>Contact</a>
             {workspaceUrl && (
               <a className="mobile-workspace" href={workspaceUrl}>
                 Open workspace <ArrowUpRight size={15} />
@@ -178,6 +184,7 @@ function Index() {
                   Open workspace <ArrowUpRight size={15} aria-hidden="true" />
                 </a>
               )}
+              <a className="button-text" href="/contact">Request trial access <ArrowUpRight size={15} aria-hidden="true" /></a>
             </div>
           </div>
 
@@ -266,6 +273,7 @@ function Index() {
             <h2>Ayra Assistant</h2>
             <a href="/help">Help & documentation</a>
             <a href="/about">About Ayra</a>
+            <a href="/contact">Contact &amp; trial access</a>
             <a href="/editorial-policy">Editorial policy</a>
             {workspaceUrl ? (
               <a href={workspaceUrl}>
