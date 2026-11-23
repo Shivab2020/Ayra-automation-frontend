@@ -11,6 +11,7 @@ import {
 import { type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import { GoogleTagManagerBody, GoogleTagManagerHead } from "../components/GoogleTagManager";
 
 const appCssHref = import.meta.env.DEV ? `${appCss}?direct` : appCss;
 
@@ -79,12 +80,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Ayra Automation | Ayra Assistant for SEO fixes" },
       {
         name: "description",
-        content: "Meet Ayra Assistant, from the first SEO issue through an approved fix and a checked result.",
+        content:
+          "Meet Ayra Assistant, from the first SEO issue through an approved fix and a checked result.",
       },
       { property: "og:title", content: "Ayra Automation | Ayra Assistant for SEO fixes" },
       {
         property: "og:description",
-        content: "Find a site issue, approve the fix, and let Ayra carry it through connected tools.",
+        content:
+          "Find a site issue, approve the fix, and let Ayra carry it through connected tools.",
       },
       { property: "og:type", content: "website" },
       { property: "og:image", content: "https://ayraautomation.in/images/ayra-social.jpg" },
@@ -116,9 +119,11 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
+        {import.meta.env.PROD && <GoogleTagManagerHead />}
         <HeadContent />
       </head>
       <body>
+        {import.meta.env.PROD && <GoogleTagManagerBody />}
         {children}
         <Scripts />
       </body>

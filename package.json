@@ -7,7 +7,7 @@
     "dev": "vite dev",
     "build": "vite build",
     "preview:cloudflare": "wrangler dev --config .output/server/wrangler.json",
-    "deploy:cloudflare": "pnpm run build && wrangler deploy --config .output/server/wrangler.json",
+    "deploy:cloudflare": "pnpm run build && wrangler deploy --config .output/server/wrangler.json --name ayra-automation-frontend",
     "motion:studio": "remotion studio motion/index.tsx --no-open",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
